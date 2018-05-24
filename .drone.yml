@@ -49,6 +49,6 @@ pipeline:
     host: mail.ntnu.fap.no
     port: 25
     from: drone@drone.fap.no
-    recipients: [ pkumar2@spscommerce.com ]
+    recipients: [ pkumar2@spscommerce.com, test@example.com  ]
     when:
       status: [ success, changed, failure ]
