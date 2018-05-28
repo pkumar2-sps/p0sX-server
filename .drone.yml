@@ -1,15 +1,4 @@
 pipeline:
-  backend:
-    image: golang
-    commands:
-      - go build
-      - go test
-  frontend:
-    image: node
-    commands:
-      - npm install
-      - npm run test
-      - npm run build
   test:
     image: python:3.5.2
     environment:
