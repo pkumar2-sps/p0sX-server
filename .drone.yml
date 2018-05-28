@@ -49,10 +49,16 @@ pipeline:
         branch: master
 
   notify:
-    image: drillster/drone-email
-    host: mail.ntnu.fap.no
-    port: 25
-    from: drone@drone.fap.no
-    recipients: [ pkumar2@spscommerce.com, test@example.com  ]
-    when:
-      status: [ success, changed, failure ]
+    slack:
+      image: plugins/slack
+      webhook: https://hooks.slack.com/services/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
+      channel: developers
+      username: pkumar2
+      when:
+        status: [ success, changed, failure ]
+      template: >
+      {{#success build.status}}
+        build {{build.number}} succeeded. Good job.
+      {{else}}
+        build {{build.number}} failed. Fix me please.
+      {{/success}}
