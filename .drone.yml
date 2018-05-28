@@ -1,4 +1,15 @@
 pipeline:
+  backend:
+    image: golang
+    commands:
+      - go build
+      - go test
+  frontend:
+    image: node
+    commands:
+      - npm install
+      - npm run test
+      - npm run build
   test:
     image: python:3.5.2
     environment:
@@ -10,6 +21,10 @@ pipeline:
       - make flake8
       - tox
 
+  publish:
+    image: plugins/docker
+    repo: pkumar2-sps/p0sX-server
+    
   docker:
     image: plugins/docker
     repo: registry.fap.no/p0sx/p0sx
