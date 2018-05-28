@@ -54,5 +54,11 @@ pipeline:
      channel: developers
      username: pkumar2
      when:
-       status: [ success, changed, failure ]
+       status: [ success, changed, failure ]       
+     template: |
+      {{#success build.status}}
+        build {{build.number}} succeeded. Good job.
+      {{else}}
+        build {{build.number}} failed. Fix me please.
+      {{/success}}
 
